@@ -456,6 +456,68 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
+    <script type="module">
+  // 1) Core
+  import { initializeApp }        from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  // 2) Auth
+  import { getAuth, 
+           createUserWithEmailAndPassword, 
+           signInWithEmailAndPassword, 
+           onAuthStateChanged }     from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+  // 3) Firestore
+  import { getFirestore, 
+           collection, 
+           addDoc, 
+           getDocs, 
+           query, 
+           orderBy, 
+           limit, 
+           serverTimestamp, 
+           runTransaction, 
+           doc,
+           deleteDoc,
+           updateDoc }              from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+  // --- Tu configuración (ya la tienes copiada) ---
+  const firebaseConfig = {
+    apiKey: "AIzaSyCYIzgm_E5lP-1EzuZZYXL9lUTJD2GIww",
+    authDomain: "cites-9181d.firebaseapp.com",
+    projectId: "cites-9181d",
+    storageBucket: "cites-9181d.appspot.com",
+    messagingSenderId: "558790968993",
+    appId: "1:558790968993:web:9cc851d7c15f0e155392e0",
+    measurementId: "G-6BWG92LTGY"
+  };
+
+  // 4) Inicializa
+  const app       = initializeApp(firebaseConfig);
+  const auth      = getAuth(app);
+  const db        = getFirestore(app);
+
+  // 5) Exporta al scope global para que script.js lo encuentre
+  window.auth      = auth;
+  window.db        = db;
+  window.firebaseFuncs = {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    limit,
+    serverTimestamp,
+    runTransaction,
+    doc,
+    deleteDoc,
+    updateDoc
+  };
+</script>
+
+<!-- luego tu script.js (normal) -->
+<script src="script.js" defer></script>
+
   <script src="script.js"></script>
 </body>
 </html>
