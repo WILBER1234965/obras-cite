@@ -1,103 +1,181 @@
-/* styles.css */
-
-/* 1) Fuente y fondo general */
-body {
+/* Reset y fondo degradado */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* --- SWALOVERRIDE: Evitar que SweetAlert herede el display:flex de body --- */
+.swal2-container {
+  position: fixed !important;
+  inset: 0 !important;
+  display: block !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  z-index: 10000 !important;
+}
+.swal2-popup {
+  max-width: 500px !important;
+  width: 90% !important;
+  color: #333 !important;
+  border-radius: 1rem !important;
+}
+/* Inputs dentro del popup de Swal */
+.swal2-popup .swal2-input {
+  background: #fff !important;
+  color: #333 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
+  margin: 0.75rem 0 !important;
+}
+
+/* --- FIN SWALOVERRIDE --- */
+
+/* Body de la app (ahora sin display:flex) */
+body {
   min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  padding: 1rem;
+}
+
+/* Contenedor principal de la app, para centrar tu .card */
+.app-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 2) Glass Card */
+/* Contenedor tipo glass */
 .card {
   width: 100%;
-  max-width: 480px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
+  max-width: 70%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   color: #fff;
 }
 
-/* 3) Títulos */
-.card h2,
-.card h3 {
-  margin: 0;
-  padding: 0;
+/* Campos de texto — sólo dentro de .card — */
+.card input[type="text"],
+.card input[type="email"],
+.card input[type="password"] {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  margin-top: 0.75rem;
+  color: #fff;
+  font-size: 1rem;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+.card input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.card input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #a89eff;
+  transform: translateY(-2px);
+  outline: none;
 }
 
-/* 4) Inputs y botones */
-input[type="text"],
-input[type="email"],
-input[type="password"],
+/* Botones generales */
 button {
+  display: inline-block;
   width: 100%;
   padding: 0.75rem;
   margin-top: 1rem;
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
   border: none;
-  border-radius: 8px;
+  border-radius: 0.75rem;
   font-size: 1rem;
+  font-weight: 600;
+  color: #1f1f1f;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Variantes */
+.btn-logout {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+.btn-logout:hover {
+  box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
+}
+.bg-green-500 {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+.bg-green-500:hover {
+  box-shadow: 0 10px 20px rgba(56, 249, 215, 0.4);
+}
+.bg-blue-500 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.bg-blue-500:hover {
+  box-shadow: 0 10px 20px rgba(118, 75, 162, 0.4);
+}
+
+/* Tabla con espacio y esquinas redondeadas */
+.overflow-x-auto {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+.table-auto {
+  width: 100%;
+  border-spacing: 0 0.75rem;
+  border-collapse: separate;
+}
+.table-auto th,
+.table-auto td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.table-auto thead th {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
   color: #fff;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+}
+.table-auto tbody tr {
+  background: rgba(255, 255, 255, 0.05);
+}
+.table-auto tbody td {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+}
+.hover\:bg-gray-700:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Botones de fila */
+.btn-edit,
+.btn-delete {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 0.875rem;
+  margin-left: 0.25rem;
   transition: background 0.3s, transform 0.2s;
 }
-
-/* Placeholder más suave */
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+.btn-edit:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
 }
-
-/* Hover y foco */
-button:hover,
-input:focus {
-  background: rgba(255, 255, 255, 0.35);
-  outline: none;
-  transform: translateY(-2px);
+.btn-delete:hover {
+  background: rgba(255, 0, 0, 0.6);
+  transform: translateY(-1px);
 }
-
-/* 5) Lista de items */
-.list-item {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-radius: 8px;
-  font-size: 0.95rem;
+.btn-delete[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
-
-/* 6) Botón de cerrar sesión */
-#logoutBtn {
-  width: auto;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  background: rgba(255, 0, 0, 0.5);
-}
-#logoutBtn:hover {
-  background: rgba(255, 0, 0, 0.7);
-}
-
-/* Dentro de styles.css, al final */
-
-button.btn-edit,
-button.btn-delete {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.85rem;
-  background: rgba(255,255,255,0.30);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background .2s;
-}
-button.btn-edit:hover { background: rgba(255,255,255,0.45); }
-button.btn-delete:hover { background: rgba(255,0,0,0.45); }
