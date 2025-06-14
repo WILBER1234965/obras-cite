@@ -4,46 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Generador Automático de CITES</title>
-  <!-- Tailwind para estilos -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="logo.png">
-
+  <!-- SweetAlert2 para alertas modernas -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="logo.png" type="image/png">
 </head>
-<body>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center">
   <div class="card">
-
     <!-- LOGIN -->
     <div id="loginDiv">
       <h2 class="text-2xl mb-4 text-center">Iniciar Sesión</h2>
       <input id="email" type="email" placeholder="Correo electrónico" />
       <input id="password" type="password" placeholder="Contraseña" />
-      <button id="loginBtn">Entrar</button>
+      <button id="loginBtn" class="bg-blue-500 hover:bg-blue-600 mt-4 w-full">Entrar</button>
       <div id="loginError" class="mt-2 text-red-300"></div>
     </div>
 
     <!-- APP -->
-    <div id="appDiv" style="display:none;">
-      <div class="flex-row mb-4">
+    <div id="appDiv" class="hidden">
+      <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl">Generar CITE</h2>
-        <button id="logoutBtn" class="text-small p-1 bg-red-500 rounded">Salir</button>
+        <button id="logoutBtn" class="btn-logout px-3 py-1 rounded text-sm">Salir</button>
       </div>
-
       <input id="docName" type="text" placeholder="Nombre del documento" />
-      <button id="generateBtn">Generar CITE</button>
-      <div id="result" class="mt-4"></div>
+      <button id="generateBtn" class="bg-green-500 hover:bg-green-600 mt-4 w-full">Generar CITE</button>
 
       <h3 class="mt-6 text-xl">CITES Recientes</h3>
-      <div id="lastList"></div>
-    </div>
+      <div class="overflow-x-auto mt-2">
+        <table id="citesTable" class="table-auto w-full text-left">
+          <thead>
+            <tr class="bg-gray-700">
+              <th class="px-4 py-2">Código</th>
+              <th class="px-4 py-2">Documento</th>
+              <th class="px-4 py-2">Creado por</th>
+              <th class="px-4 py-2">Fecha</th>
+              <th class="px-4 py-2">Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
+      <!-- Solo superadmin verá este botón -->
+      <button id="exportBtn" class="bg-yellow-500 hover:bg-yellow-600 mt-4 w-full hidden">
+        Exportar a Excel
+      </button>
+    </div>
   </div>
 
-
-   <script src="script.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <!-- Lógica JS -->
+  <script src="script.js" defer></script>
 </body>
 </html>
