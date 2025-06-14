@@ -1,58 +1,103 @@
+/* styles.css */
 
-        body {
-            background: linear-gradient(135deg, #6b8cff 0%, #3b4dff 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-        }
-        
-        .glass {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        }
-        
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .bg-primary-gradient {
-            background: linear-gradient(to right, #3b82f6, #2563eb);
-        }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .sidebar {
-            transition: all 0.3s ease;
-        }
-        
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
+/* 1) Fuente y fondo general */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2) Glass Card */
+.card {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+
+/* 3) Títulos */
+.card h2,
+.card h3 {
+  margin: 0;
+  padding: 0;
+}
+
+/* 4) Inputs y botones */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* Placeholder más suave */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Hover y foco */
+button:hover,
+input:focus {
+  background: rgba(255, 255, 255, 0.35);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+/* 5) Lista de items */
+.list-item {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+/* 6) Botón de cerrar sesión */
+#logoutBtn {
+  width: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  background: rgba(255, 0, 0, 0.5);
+}
+#logoutBtn:hover {
+  background: rgba(255, 0, 0, 0.7);
+}
+
+/* Dentro de styles.css, al final */
+
+button.btn-edit,
+button.btn-delete {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.30);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
+}
+button.btn-edit:hover { background: rgba(255,255,255,0.45); }
+button.btn-delete:hover { background: rgba(255,0,0,0.45); }
